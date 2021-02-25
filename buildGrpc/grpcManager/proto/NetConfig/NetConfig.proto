@@ -1,0 +1,19 @@
+syntax = "proto3";
+service NetConfigTran{
+	rpc PushNetConfig(CfgMessage) returns (NetConfigStatus){
+	}
+	rpc PullNetConfig(CfgMessage) returns (CfgMessage){
+	}
+	rpc PushPartNetConfig(CfgMessage) returns(NetConfigStatus){
+	}
+}
+message CfgMessage{
+	int32 type = 1;    	    //full or part
+	string filename = 2;    //cfgname
+	bytes config = 3;       //content
+	string websiteid = 4;
+}
+message NetConfigStatus{
+	int32 status = 1;
+	bytes content = 2;
+}
